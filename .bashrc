@@ -119,6 +119,7 @@ fi
 # My customizations 
 export EDITOR=nvim
 alias vim='nvim'
+export PATH=/home/jnewton/opt:$PATH
 
 # Docker setup
 export PATH=/home/jnewton/bin:$PATH
