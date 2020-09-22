@@ -48,3 +48,5 @@ nnoremap <silent> <leader>D :set ft=diff<CR>/\vIndex: .*<CR>
 nnoremap <silent> <leader>g <ESC>/\vdiff --git.*<CR>
 " File history query
 nnoremap <leader>h :browse filter // ol<left><left><left><left>
+" DirDiff excludes
+let g:DirDiffExcludes = ".git,.*.swp" 
