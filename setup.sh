@@ -8,7 +8,7 @@ if [ $# -eq 1 ]; then
   ln -ib -s `pwd`/.gitconfig $1/.gitconfig
 
   mkdir -p $1/.config/
-  ln -ib -s `pwd`/.config/nvim $1/.config/nvim
+  ln -sn `pwd`/.config/nvim/ $1/.config/
 else
   echo "Usage: setup.sh <target dir>"
 fi;
