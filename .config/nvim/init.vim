@@ -12,8 +12,6 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 call plug#end()
 
 set encoding=UTF-8
-" Doesn't work with nvim
-" set viminfo+=n$VIM\\viminfo
 set autochdir         " autocmd BufEnter * silent! :lcd %:p:h " autochdir, for older vims
 set hidden            " Hide buffers rather than unloading it
 filetype indent on
