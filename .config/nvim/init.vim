@@ -20,7 +20,7 @@ filetype indent on
 filetype plugin on
 syntax on
 set backspace=indent,eol,start
-set clipboard=unnamed " get yank to work with system clipboard
+set clipboard=unnamedplus " get yank to work with system clipboard
 set expandtab
 set shiftwidth=2
 set tabstop=2
