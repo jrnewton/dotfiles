@@ -8,7 +8,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'airblade/vim-gitgutter'
-" Plug 'ryanoasis/vim-devicons'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 call plug#end()
 
