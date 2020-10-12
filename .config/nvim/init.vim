@@ -54,13 +54,13 @@ nnoremap <leader>h :browse filter // ol<left><left><left><left>
 " DirDiff excludes
 let g:DirDiffExcludes = ".git,.*.swp" 
 
-" ctrlp
+" *************************** ctrlp ************************
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|node_modules',
   \ 'file': '\.exe$|\.so$|\.dll$',
   \ }
 
-" *************************** coc.vim *****************************
+" *************************** coc.vim **********************
 " From https://github.com/neoclide/coc.nvim
 "
 " Use tab for trigger completion with characters ahead and navigate.
