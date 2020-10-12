@@ -30,7 +30,7 @@ set number
 set guioptions+=bk    " b=enable bottom scroll, k=keep window size
 set synmaxcol=512     " stop syntax highlight after 512, to avoid long lines slow down
 set cursorline
-" set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2      " always show status line
 set encoding=utf-8
 set ignorecase
@@ -171,7 +171,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"""   set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
