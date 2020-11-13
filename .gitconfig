@@ -1,3 +1,6 @@
 [user]
-	email = rocketnewton@gmail.com
+	email = newt@hey.com
 	name = Jon Newton
+[alias]
+	d = show -m
+	rp = git log -p --abbrev-commit  ..origin/main
