@@ -50,7 +50,7 @@ nnoremap <silent> <leader>g <ESC>/\vdiff --git.*<CR>
 nnoremap <leader>h :browse filter // ol<left><left><left><left>
 
 " *************************** DirDiff **********************
-let g:DirDiffExcludes = ".git,.*.swp" 
+let g:DirDiffExcludes = ".git,.*.swp,node_modules,out,diff" 
 
 " *************************** ctrlp ************************
 let g:ctrlp_custom_ignore = {
