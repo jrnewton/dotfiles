@@ -2,8 +2,10 @@
 email = newt@hey.com
 name = Jon Newton
 [alias]
-; https://coderwall.com/p/euwpig/a-better-git-log
 ; use -p for a patch diff
-lg="log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+; use --state for files changed
+; use --graph for a graph of branches
+; see also https://coderwall.com/p/euwpig/a-better-git-log
+lg="log --oneline --decorate"
 ; review pull / show incoming changes
 rp=lg -p ..origin/main
