@@ -2,11 +2,10 @@
 email = newt@hey.com
 name = Jon Newton
 [alias]
-; use -p for a patch diff
-; use --state for files changed
-; use --graph for a graph of branches
+; my own help screen.  filter out the 'h' entry itself with grep -v.
+h="!echo 'aliases: ' && git alias | grep -v 'h = ' && echo '\\nAdditional args:\\n-p for patch\\n--stat for file list\\n--graph for branch visual'"
 ; see also https://coderwall.com/p/euwpig/a-better-git-log
 lg="log --oneline --decorate"
 ; review incoming / outgoing changes
-review-pull="!git fetch && git lg ..@{u}"
-review-push="!git fetch && git lg @{u}.."
+lg-in="!git fetch && git lg ..@{u}"
+lg-out="!git fetch && git lg @{u}.."
