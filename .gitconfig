@@ -7,5 +7,6 @@ name = Jon Newton
 ; use --graph for a graph of branches
 ; see also https://coderwall.com/p/euwpig/a-better-git-log
 lg="log --oneline --decorate"
-; review pull / show incoming changes
-rp=lg -p ..origin/main
+; review incoming / outgoing changes
+review-pull="!git fetch && git lg ..@{u}"
+review-push="!git fetch && git lg @{u}.."
