@@ -117,6 +117,8 @@ if ! shopt -oq posix; then
 fi
 
 # My customizations 
+export PATH=/home/jnewton/firefox:$PATH
+
 export EDITOR=nvim
 alias vim='nvim'
 export PATH=/home/jnewton/opt:$PATH
