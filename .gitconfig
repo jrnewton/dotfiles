@@ -1,6 +1,9 @@
 [user]
-	email = newt@hey.com
-	name = Jon Newton
+email = newt@hey.com
+name = Jon Newton
 [alias]
-	d = show -m
-	rp = git log -p --abbrev-commit  ..origin/main
+; https://coderwall.com/p/euwpig/a-better-git-log
+; use -p for a patch diff
+lg="log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+; review pull / show incoming changes
+rp=lg -p ..origin/main
