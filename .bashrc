@@ -121,7 +121,7 @@ export PATH=/home/jnewton/firefox:$PATH
 
 export EDITOR=nvim
 alias vim='nvim'
-export PATH=/home/jnewton/opt:$PATH
+export PATH=/home/jnewton/.bin:$PATH
 
 # Docker setup
 export PATH=/home/jnewton/bin:$PATH
