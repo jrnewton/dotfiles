@@ -5,7 +5,7 @@ usage()
   echo "Usage: chrome_restrictions.sh on|off"
 }
 
-if [ "$#" -eq "0" ]; then
+if [ $# -eq 0 ]; then
   usage
   exit 1
 else
