@@ -9,7 +9,10 @@ lg="log --oneline --decorate"
 ; review incoming / outgoing changes
 lg-in="!git fetch && git lg ..@{u}"
 lg-out="!git fetch && git lg @{u}.."
+ls-unpushed="!unpushed-list.sh"
+unpushed="!unpushed.sh"
 df="diff"
 dfc="diff --cached"
 s="status"
 c="commit"
+
