@@ -117,7 +117,8 @@ if ! shopt -oq posix; then
 fi
 
 # My customizations 
-export PATH=/home/jnewton/firefox:$PATH
+# linuxbrew is used by AWS Lambda SAM
+export PATH=/home/linuxbrew/.linuxbrew/bin/:$PATH
 
 export EDITOR=nvim
 alias vim='nvim'
