@@ -19,6 +19,9 @@ shopt -s histappend
 HISTSIZE=2000
 HISTFILESIZE=100000
 
+# write history in concurrent session
+PROMPT_COMMAND='history -a'
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
