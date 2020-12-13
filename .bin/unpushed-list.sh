@@ -6,9 +6,9 @@ do
   #remove '.git'
   d2=${d%.git}
   pushd $d2 > /dev/null
-  git log --branches --not --remotes --no-walk --oneline --exit-code > /dev/null
+  git log --branches --not --remotes --oneline --exit-code > /tmp/out
   if [ $? != 0 ]; then
-    echo $d2
+    echo "${d2}  - unpushed change count: `cat /tmp/out | wc -l`"
   fi
   popd > /dev/null
 done
