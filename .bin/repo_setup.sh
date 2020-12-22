@@ -41,3 +41,22 @@ cp $cpArgs $templateDir/.eslintrc.js .
 cp $cpArgs $templateDir/.prettierignore .
 cp $cpArgs $templateDir/.prettierrc .
 cp $cpArgs $templateDir/tsconfig.json .
+
+mkdir src
+mkdir test
+
+cat << EOF > package.json
+{
+  "name": "tbd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests defined!\" && exit 1"
+    "lint": "eslint"
+  },
+  "license": "MIT"
+}
+EOF
+
+echo "Install these packages"
+echo "  npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier local-web-server typescript"
