@@ -16,3 +16,5 @@ dfc="diff --cached"
 s="status"
 c="commit"
 
+[init]
+	defaultBranch = main
