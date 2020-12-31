@@ -123,8 +123,7 @@ fi
 # linuxbrew is used by AWS Lambda SAM
 export PATH=/home/linuxbrew/.linuxbrew/bin/:$PATH
 
-export EDITOR=nvim
-alias vim='nvim'
+export EDITOR=vi
 export PATH=/home/jnewton/.bin:$PATH
 
 # Docker setup
