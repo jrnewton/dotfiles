@@ -14,7 +14,7 @@ unpushed="!unpushed.sh"
 df="diff"
 dfc="diff --cached"
 s="status"
-c="commit"
+cm="commit -m"
 
 [init]
 	defaultBranch = main
