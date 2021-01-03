@@ -32,6 +32,11 @@ humanize-numbers
 # Only one file or directory per command; multiple "exclude"
 # commands may be given.
 exclude /home/jnewton/vm/
+exclude /home/jnewton/Downloads/
+exclude /home/jnewton/.cache/
+exclude /home/jnewton/.npm/
+exclude /home/jnewton/.tarsnap/
+exclude node_modules/
 
 # Include only files and directories matching specified patterns.
 # Only one file or directory per command; multiple "include"
