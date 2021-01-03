@@ -7,6 +7,8 @@ if [ $# -eq 1 ]; then
 
   ln -ib -s `pwd`/.bashrc $1/.bashrc
 
+  ln -ib -s `pwd`/.tarsnaprc $1/.tarsnaprc
+
   ln -ib -s `pwd`/.gitconfig $1/.gitconfig
 
   mkdir -p $1/.config/
