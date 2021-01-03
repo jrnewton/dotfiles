@@ -18,3 +18,5 @@ c="commit"
 
 [init]
 	defaultBranch = main
+[pull]
+	rebase = false
