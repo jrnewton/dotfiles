@@ -51,7 +51,7 @@ cat << EOF > package.json
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No tests defined!\" && exit 1"
+    "test": "echo \"No tests defined!\" && exit 1",
     "lint": "eslint"
   },
   "license": "MIT"
