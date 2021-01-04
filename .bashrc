@@ -126,6 +126,9 @@ export PATH=/home/linuxbrew/.linuxbrew/bin/:$PATH
 export EDITOR=vi
 export PATH=/home/jnewton/.bin:$PATH
 
+# Deno
+export PATH=/home/jnewton/.deno/bin:$PATH
+
 # Docker setup
 export PATH=/home/jnewton/bin:$PATH
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
