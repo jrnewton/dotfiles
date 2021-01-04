@@ -59,6 +59,14 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 " *************************** coc.vim **********************
+let g:coc_global_extensions = [
+ \ 'coc-json',
+ \ 'coc-yaml',
+ \ 'coc-tsserver',
+ \ 'coc-css',
+ \ 'coc-html',
+ \ 'coc-vetur',
+ \ ]
 " From https://github.com/neoclide/coc.nvim
 "
 " Use tab for trigger completion with characters ahead and navigate.
