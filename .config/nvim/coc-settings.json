@@ -1,0 +1,4 @@
+{
+  //https://github.com/josa42/coc-docker/issues/45
+  "docker.enable": false
+}

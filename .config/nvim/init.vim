@@ -66,6 +66,7 @@ let g:coc_global_extensions = [
  \ 'coc-css',
  \ 'coc-html',
  \ 'coc-vetur',
+ \ 'coc-docker',
  \ ]
 " From https://github.com/neoclide/coc.nvim
 "
