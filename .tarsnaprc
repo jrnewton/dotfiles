@@ -37,6 +37,7 @@ exclude /home/jnewton/.cache/
 exclude /home/jnewton/.npm/
 exclude /home/jnewton/.tarsnap/
 exclude node_modules/
+exclude /home/jnewton/.local/share/docker
 
 # Include only files and directories matching specified patterns.
 # Only one file or directory per command; multiple "include"
