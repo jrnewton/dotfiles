@@ -1,0 +1,30 @@
+# https://askubuntu.com/a/492343
+# comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n 's/^Package: //p' | sort -u)
+apt-transport-https
+build-essential
+cmake
+code
+containerd.io
+curl
+default-jre
+discord
+docker-ce
+docker-ce-cli
+freerdp2-x11
+g++
+git
+git-extras
+git-gui
+gitk
+gnupg-agent
+google-chrome-stable
+hardinfo
+htop
+jq
+libsecret-tools
+neovim
+ntp
+openssh-server
+tarsnap
+uidmap
+virtualbox-6.1
