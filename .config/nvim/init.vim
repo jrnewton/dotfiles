@@ -36,6 +36,7 @@ set incsearch
 set hlsearch
 set nowrapscan
 set nobackup
+set spell
 colo gruvbox
 set background=dark 
 " Key mappings
