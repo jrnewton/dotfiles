@@ -31,21 +31,13 @@ humanize-numbers
 # Exclude files and directories matching specified patterns.
 # Only one file or directory per command; multiple "exclude"
 # commands may be given.
-exclude node_modules/
+exclude */node_modules/*
+exclude *.iso
 
 # Include only files and directories matching specified patterns.
 # Only one file or directory per command; multiple "include"
 # commands may be given.
-include /home/jnewton/code
-include /home/jnewton/Desktop
-include /home/jnewton/Documents
-include /home/jnewton/ghdev
-include /home/jnewton/Music
-include /home/jnewton/Pictures
-include /home/jnewton/Public
-include /home/jnewton/Templates
-include /home/jnewton/Videos
-
+#include
 
 # Attempt to reduce tarsnap memory consumption.  This option
 # will slow down the process of creating archives, but may help
