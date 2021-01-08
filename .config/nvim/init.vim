@@ -1,16 +1,4 @@
-call plug#begin('~/.config/nvim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'will133/vim-dirdiff', {'branch': 'master'}
-Plug 'kevinoid/vim-jsonc'
-Plug 'morhetz/gruvbox'
-
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
-call plug#end()
-
+" vim compatible settings
 set encoding=UTF-8
 set autochdir         " autocmd BufEnter * silent! :lcd %:p:h " autochdir, for older vims
 set hidden            " Hide buffers rather than unloading it
@@ -37,8 +25,6 @@ set hlsearch
 set nowrapscan
 set nobackup
 set spell
-colo gruvbox
-set background=dark 
 " Key mappings
 let mapleader=","
 nnoremap <silent> <Leader>l :windo :set scb!<CR>
@@ -49,6 +35,24 @@ nnoremap <silent> <leader>D :set ft=diff<CR>/\vIndex: .*<CR>
 nnoremap <silent> <leader>g <ESC>/\vdiff --git.*<CR>
 " File history query
 nnoremap <leader>h :browse filter // ol<left><left><left><left>
+
+" Begin NeoVim/modern setup options
+colo gruvbox
+set background=dark 
+
+call plug#begin('~/.config/nvim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'will133/vim-dirdiff', {'branch': 'master'}
+Plug 'kevinoid/vim-jsonc'
+Plug 'morhetz/gruvbox'
+
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+call plug#end()
+
 
 " *************************** DirDiff **********************
 let g:DirDiffExcludes = ".git,.*.swp,node_modules,out,diff" 
