@@ -35,10 +35,10 @@ nnoremap <silent> <leader>D :set ft=diff<CR>/\vIndex: .*<CR>
 nnoremap <silent> <leader>g <ESC>/\vdiff --git.*<CR>
 " File history query
 nnoremap <leader>h :browse filter // ol<left><left><left><left>
+" DirDiff
+let g:DirDiffExcludes = ".git,.*.swp,node_modules,out,diff" 
 
 " Begin NeoVim/modern setup options
-colo gruvbox
-set background=dark 
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -53,9 +53,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 call plug#end()
 
-
-" *************************** DirDiff **********************
-let g:DirDiffExcludes = ".git,.*.swp,node_modules,out,diff" 
+colo gruvbox
+set background=dark 
 
 " *************************** ctrlp ************************
 let g:ctrlp_custom_ignore = {
