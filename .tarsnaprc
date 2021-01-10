@@ -1,8 +1,0 @@
-# this is a comment
-cachedir /home/jnewton/.tarsnap/tarsnap-cache
-keyfile /home/jnewton/.tarsnap/tarsnap.key
-nodump
-checkpoint-bytes 1G
-humanize-numbers
-exclude */node_modules/*
-exclude *.iso
