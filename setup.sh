@@ -7,18 +7,19 @@ if [ $# -eq 1 ]; then
 
   ln -ib -s `pwd`/.bashrc $1/.bashrc
 
-  ln -ib -s `pwd`/.tarsnaprc $1/.tarsnaprc
-
   ln -ib -s `pwd`/.gitconfig $1/.gitconfig
 
   mkdir -p $1/.config/
   ln -sn `pwd`/.config/nvim/ $1/.config/
 
-  ln -sn `pwd`/.config/xfce4/terminal/ $1/.config/xfce4/
+# trying to use the defaults
+#  ln -sn `pwd`/.config/xfce4/terminal/ $1/.config/xfce4/
 
-  echo "Install these packages"
-  cat apps.txt
-  echo "  "
+  echo "Installing deb packages..."
+  cat apps.txt | grep -v "^#" | xargs sudo apt install 
+  echo "done"
+  echo "Install docker:  curl -fsSL https://get.docker.com/rootless | sh"
+  echo "Manual installs:"
   echo "  nvm https://github.com/nvm-sh/nvm"
   echo "  nvim +PlugInstall +qall"
   echo "  sudo update-alternatives --config vim"
