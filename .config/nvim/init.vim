@@ -51,6 +51,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 colo gruvbox
