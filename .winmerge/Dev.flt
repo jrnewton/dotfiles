@@ -28,6 +28,7 @@ f: ^\.\#
 ## Filter for directory
 d: \\CVS$
 d: \\\.git$
+d: \\\.svn$
 d: \\dist$
 d: \\archive$
 d: \\bundleGenPrepArea$
