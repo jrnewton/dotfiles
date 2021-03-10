@@ -139,3 +139,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 alias git-gui='git gui'
+
+
+# Added by Amplify CLI binary installer
+export PATH="$HOME/.amplify/bin:$PATH"
+
+# For aws_completer
+export PATH="/usr/local/bin:$PATH"
+complete -C '/usr/local/bin/aws_completer' aws
+
+# For cfn-lint which is used by Serverless IDE extension in VS code
+export PATH="/home/jnewton/.local/bin:$PATH"
