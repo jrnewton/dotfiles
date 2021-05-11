@@ -16,7 +16,7 @@ if [ $# -eq 1 ]; then
 #  ln -sn `pwd`/.config/xfce4/terminal/ $1/.config/xfce4/
 
   echo "Installing deb packages..."
-  cat apps.txt | grep -v "^#" | xargs sudo apt install 
+  cat apps.txt | grep -v "^#" | xargs sudo apt install -y 
   echo "done"
   echo "Install docker:  curl -fsSL https://get.docker.com/rootless | sh"
   echo "Manual installs:"
