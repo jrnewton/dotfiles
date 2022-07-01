@@ -1,3 +1,4 @@
+colo peachpuff
 " vim compatible settings
 set encoding=UTF-8
 set autochdir         " autocmd BufEnter * silent! :lcd %:p:h " autochdir, for older vims
@@ -6,7 +7,7 @@ filetype indent on
 filetype plugin on
 syntax on
 set backspace=indent,eol,start
-set clipboard=unnamedplus " get yank to work with system clipboard
+set clipboard=unnamed " get yank to work with system clipboard
 set expandtab
 set shiftwidth=2
 set tabstop=2
@@ -25,6 +26,7 @@ set hlsearch
 set nowrapscan
 set nobackup
 set spell
+set guifont=courier_new:h12
 " Key mappings
 let mapleader=","
 nnoremap <silent> <Leader>l :windo :set scb!<CR>
@@ -35,4 +37,3 @@ nnoremap <silent> <leader>D :set ft=diff<CR>/\vIndex: .*<CR>
 nnoremap <silent> <leader>g <ESC>/\vdiff --git.*<CR>
 " File history query
 nnoremap <leader>h :browse filter // ol<left><left><left><left>
-
