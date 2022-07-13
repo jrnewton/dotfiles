@@ -24,6 +24,8 @@ f: ^diff$
 f: \.bak$
 f: \.ser$
 f: ^\.\#
+f: .project
+f: .classpath
 
 ## Filter for directory
 d: \\CVS$
@@ -32,3 +34,6 @@ d: \\\.svn$
 d: \\dist$
 d: \\archive$
 d: \\bundleGenPrepArea$
+d: \\target$
+d: \\\.settings$
+d: \\node_modules$
