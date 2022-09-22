@@ -1,4 +1,11 @@
-colo peachpuff
+if has("gui_running")
+  colo peachpuff
+  set guifont=courier_new:h12
+  set spell
+else " terminal
+  colo koehler
+  set nospell " highlight color is annoying in term
+endif
 set encoding=UTF-8
 set autochdir " for older vims: autocmd BufEnter * silent! :lcd %:p:h
 set hidden " Hide buffers rather than unloading it
@@ -24,8 +31,6 @@ set incsearch
 set hlsearch
 set nowrapscan
 set nobackup
-set spell
-set guifont=courier_new:h12
 " Key mappings
 let mapleader=","
 nnoremap <silent> <Leader>l :windo :set scb!<CR>
