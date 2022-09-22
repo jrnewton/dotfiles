@@ -1,8 +1,7 @@
 colo peachpuff
-" vim compatible settings
 set encoding=UTF-8
-set autochdir         " autocmd BufEnter * silent! :lcd %:p:h " autochdir, for older vims
-set hidden            " Hide buffers rather than unloading it
+set autochdir " for older vims: autocmd BufEnter * silent! :lcd %:p:h
+set hidden " Hide buffers rather than unloading it
 filetype indent on
 filetype plugin on
 syntax on
@@ -14,11 +13,11 @@ set tabstop=2
 set wildignorecase
 set wildmenu
 set number
-set guioptions+=bk    " b=enable bottom scroll, k=keep window size
-set synmaxcol=512     " stop syntax highlight after 512, to avoid long lines slow down
+set guioptions+=bk " b=enable bottom scroll, k=keep window size
+set synmaxcol=512 " stop syntax highlight, avoid slow down on long lines
 set cursorline
 set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-set laststatus=2      " always show status line
+set laststatus=2 " always show status line
 set encoding=utf-8
 set ignorecase
 set incsearch
