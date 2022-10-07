@@ -6,13 +6,13 @@
 [core]
 	editor = vim
 [push]
-  autoSetupRemote = true
+	autoSetupRemote = true
 [alias]
 ; my own help screen.  Filter out the 'h' entry itself with grep -v.
-  h = !echo 'aliases: ' && git alias | grep -v 'h = ' && git-alias-help.bat
+	h = !echo 'aliases: ' && git alias | grep -v 'h = ' && git-alias-help.bat
 ; see also https://coderwall.com/p/euwpig/a-better-git-log
 ; lg = log --oneline --decorate
-  lg = log --date=relative --format=format:'%Cgreen%h %Creset%<|(20,trunc)%aL %<|(30,trunc)%cd %Creset%s'
+	lg = log --date=relative --format=format:'%Cgreen%h %Creset%<|(20,trunc)%aL %<|(30,trunc)%cd %Creset%s'
 ; review incoming / outgoing changes
 	lg-in = !git fetch && git lg ..@{u}
 	lg-out = !git fetch && git lg @{u}..
@@ -26,6 +26,6 @@
 	revert-repo = stash push -u -m
 ;revert-repo = reset --hard HEAD
 [pull]
-  rebase = false
+	rebase = false
 [gc]
 	autoDetach = false
