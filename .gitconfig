@@ -1,21 +1,31 @@
 [user]
-email = newt@hey.com
-name = Jon Newton
-[alias]
-; my own help screen.  filter out the 'h' entry itself with grep -v.
-h="!echo 'aliases: ' && git alias | grep -v 'h = ' && echo '\\nAdditional args:\\n-p for patch\\n--stat for file list\\n--graph for branch visual'"
-; see also https://coderwall.com/p/euwpig/a-better-git-log
-lg="log --oneline --decorate"
-; review incoming / outgoing changes
-lg-in="!git fetch && git lg ..@{u}"
-lg-out="!git fetch && git lg @{u}.."
-chk="!git-check.sh"
-df="diff"
-dfc="diff --cached"
-s="status"
-cm="commit -m"
-
+	email = newt@hey.com
+	name = Jon Newton
 [init]
 	defaultBranch = main
+[core]
+	editor = vim
+[push]
+  autoSetupRemote = true
+[alias]
+; my own help screen.  Filter out the 'h' entry itself with grep -v.
+  h = !echo 'aliases: ' && git alias | grep -v 'h = ' && git-alias-help.bat
+; see also https://coderwall.com/p/euwpig/a-better-git-log
+; lg = log --oneline --decorate
+  lg = log --date=relative --format=format:'%Cgreen%h %Creset%<|(20,trunc)%aL %<|(30,trunc)%cd %Creset%s'
+; review incoming / outgoing changes
+	lg-in = !git fetch && git lg ..@{u}
+	lg-out = !git fetch && git lg @{u}..
+; Don't need this with single repo
+; chk="!git-check.sh"
+	df = diff
+	dfc = diff --cached
+	s = !git status && git stash list
+	cm = commit -m
+	revert-file = checkout HEAD --
+	revert-repo = stash push -u -m
+;revert-repo = reset --hard HEAD
 [pull]
-	rebase = false
+  rebase = false
+[gc]
+	autoDetach = false
