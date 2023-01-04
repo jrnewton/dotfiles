@@ -28,11 +28,12 @@ let mapleader=","
 nnoremap <silent> <Leader>l :windo :set scb!<CR> " scroll lock
 nnoremap <silent> <Leader>w :set wrap!<CR> " word wrap
 nnoremap <silent> <leader>c <ESC>/\v^[<=>]{7}( .*\|$)<CR> " version control conflicts
-"nnoremap <silent> <leader>d <ESC>/\vIndex: .*<CR> " svn file names
-"nnoremap <silent> <leader>D :set ft=diff<CR>/\vIndex: .*<CR> " ... and enable syntax
 nnoremap <silent> <leader>g <ESC>/\vdiff --git.*<CR> " git diff
 " File history query
 nnoremap <leader>h :browse filter // ol<left><left><left><left>
+" Searchlight
+nnoremap <silent> * *:1Searchlight<CR>
+nnoremap <silent> # #:1Searchlight<CR>
 " Colors and such
 if &term=~'win32' " cmd.exe - make as plain as possible
   colo default
