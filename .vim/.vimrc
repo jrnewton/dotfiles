@@ -23,18 +23,19 @@ set incsearch
 set hlsearch
 set nowrapscan
 set nobackup
-" Key mappings
 let mapleader=","
+nnoremap <silent> <Leader>s <ESC>/\v $<CR> " trailing space
 nnoremap <silent> <Leader>l :windo :set scb!<CR> " scroll lock
 nnoremap <silent> <Leader>w :set wrap!<CR> " word wrap
 nnoremap <silent> <leader>c <ESC>/\v^[<=>]{7}( .*\|$)<CR> " version control conflicts
-nnoremap <silent> <leader>g <ESC>/\vdiff --git.*<CR> " git diff
+nnoremap <silent> <leader>d <ESC>/\vdiff --git.*<CR> " git diff
+nnoremap <silent> <leader>o <ESC>/\vSysprint data set<CR> " Job output delim
+nnoremap <silent> <leader>e <ESC>/\verror \w<CR> " compile errors
+nnoremap <silent> <leader>tt <ESC>/\v\[Todo\].*<CR> " todo list
+nnoremap <silent> <leader>tp <ESC>/\v\[Prog\].*<CR> " todo list
+nnoremap <silent> <leader>td <ESC>/\v\[Done\].*<CR> " todo list
 " File history query
 nnoremap <leader>h :browse filter // ol<left><left><left><left>
-" Searchlight
-nnoremap <silent> * *:1Searchlight<CR>
-nnoremap <silent> # #:1Searchlight<CR>
-" Colors and such
 if &term=~'win32' " cmd.exe - make as plain as possible
   colo default
   syntax off
