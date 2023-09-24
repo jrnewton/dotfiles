@@ -1,31 +1,58 @@
 [user]
-	email = newt@hey.com
 	name = Jon Newton
+	email = newt@hey.com
 [init]
 	defaultBranch = main
 [core]
 	editor = vim
 [push]
-	autoSetupRemote = true
+	recurseSubmodules = check
+; autoSetupRemote = true
+;	recurseSubmodules = check
 [alias]
 ; my own help screen.  Filter out the 'h' entry itself with grep -v.
-	h = !echo 'aliases: ' && git alias | grep -v 'h = ' && git-alias-help.bat
+  h = !echo 'aliases: ' && git alias && git-alias-help.bat
+  up = !git fetch --all && git pull
+  c = config --global --edit
+  b = branch -av
+  r = remote -v
 ; see also https://coderwall.com/p/euwpig/a-better-git-log
 ; lg = log --oneline --decorate
-	lg = log --date=relative --format=format:'%Cgreen%h %Creset%<|(20,trunc)%aL %<|(30,trunc)%cd %Creset%s'
+  lg = !git log --date=relative --format=format:'commit %Cgreen%h %Creset%<|(27,trunc)%aL %<|(37,trunc)%cd %Creset%s'
 ; review incoming / outgoing changes
-	lg-in = !git fetch && git lg ..@{u}
-	lg-out = !git fetch && git lg @{u}..
+	lg-in = !git --no-pager lg ..@{u}
+	lg-out = !git --no-pager lg @{u}..
 ; Don't need this with single repo
 ; chk="!git-check.sh"
-	df = diff
-	dfc = diff --cached
-	s = !git status && git stash list
+	df = !git --no-pager diff
+	dfc = !git --no-pager diff --cached
+	sl = stash list
+  	s = status
 	cm = commit -m
-	revert-file = checkout HEAD --
-	revert-repo = stash push -u -m
+	reset-all-untracked = clean -d -f
+  	reset-to-origin = reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+	reset-file = checkout HEAD --
+  	reset-to-local = reset --hard HEAD
+;	reset-repo = stash push -u -m
+;revert-hash = revert --no-commit
 ;revert-repo = reset --hard HEAD
+  	gui = !smartgitc --open .
+  	build = !git log $(git log --skip=1 -n1 --author=no-reply-gui-build --pretty=format:"%h")..HEAD
+; find start of branch V41_integration, from V33_integration
+; git switch V41_integration
+; git log --oneline V33_integration..
 [pull]
-	rebase = false
+  	rebase = false
 [gc]
 	autoDetach = false
+[remote "origin"]
+	fetch = +refs/pull/*/merge:refs/remotes/origin/pr/*
+[credential]
+	helper = C:/tools/git/mingw64/bin/git-credential-manager.exe
+[commit]
+	gpgSign = false
+[gui]
+	pruneduringfetch = true
+; prefer manual setting of remote branch name to catch typos and case differences
+;[checkout]
+;	guess = false
