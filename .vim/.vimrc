@@ -22,20 +22,8 @@ set ignorecase
 set incsearch
 set hlsearch
 set nowrapscan
+set nowrap
 set nobackup
-let mapleader=","
-nnoremap <silent> <Leader>s <ESC>/\v $<CR> " trailing space
-nnoremap <silent> <Leader>l :windo :set scb!<CR> " scroll lock
-nnoremap <silent> <Leader>w :set wrap!<CR> " word wrap
-nnoremap <silent> <leader>c <ESC>/\v^[<=>]{7}( .*\|$)<CR> " version control conflicts
-nnoremap <silent> <leader>d <ESC>/\vdiff --git.*<CR> " git diff
-nnoremap <silent> <leader>o <ESC>/\vSysprint data set<CR> " Job output delim
-nnoremap <silent> <leader>e <ESC>/\verror \w<CR> " compile errors
-nnoremap <silent> <leader>tt <ESC>/\v\[Todo\].*<CR> " todo list
-nnoremap <silent> <leader>tp <ESC>/\v\[Prog\].*<CR> " todo list
-nnoremap <silent> <leader>td <ESC>/\v\[Done\].*<CR> " todo list
-" File history query
-nnoremap <leader>h :browse filter // ol<left><left><left><left>
 if &term=~'win32' " cmd.exe - make as plain as possible
   colo default
   syntax off
@@ -48,3 +36,31 @@ else " assume gvim
   colo peachpuff
   set guifont=courier_new:h12
 endif
+set tw=72
+" let mapleader=","
+" Make sure nothing is after <CR> or mapping will be messed up.
+" wrap
+nnoremap <silent> <Leader>w :set wrap!<CR>
+" trailing space
+nnoremap <silent> <Leader>s <ESC>/\v $<CR>
+" scroll lock
+nnoremap <silent> <Leader>l :windo :set scb!<CR>
+" version control conflicts
+nnoremap <silent> <leader>c <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+" format visual selection with 'gq' which applies textwidth
+vnoremap <silent> <leader>f gq<CR>
+" git diff
+nnoremap <silent> <leader>d <ESC>/\vdiff --git.*<CR>
+" JES job output delim
+nnoremap <silent> <leader>o <ESC>/\vSysprint data set<CR>
+" compile errors
+nnoremap <silent> <leader>e <ESC>/\verror \w<CR>
+" todo list
+nnoremap <silent> <leader>tt <ESC>/\v\[Todo\].*<CR>
+nnoremap <silent> <leader>tp <ESC>/\v\[Prog\].*<CR>
+nnoremap <silent> <leader>td <ESC>/\v\[Done\].*<CR>
+" buffers
+nnoremap <silent> <leader>] :bn<CR>
+nnoremap <silent> <leader>[ :bp<CR>
+" File history query
+nnoremap <leader>h :browse filter // ol<left><left><left><left>
