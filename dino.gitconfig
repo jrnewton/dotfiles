@@ -1,0 +1,90 @@
+[user]
+	name = Jon Newton
+	email = jon.newton@dino-software.com
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim
+  excludesFile=~/.gitignore
+[push]
+	recurseSubmodules = check
+; autoSetupRemote = true
+;	recurseSubmodules = check
+[alias]
+; my own help screen.  Filter out the 'h' entry itself with grep -v.
+  h = !echo 'aliases: ' && git alias && git-help.bat
+  up = !git fetch --all && git pull
+  c = config --global --edit
+  b = branch -av
+  r = remote -v
+; see also https://coderwall.com/p/euwpig/a-better-git-log
+; lg = log --oneline --decorate
+  #lg = !git log --date=relative --format=format:'commit %Cgreen%h %Creset%<|(27,trunc)%aL %<|(37,trunc)%cd %Creset%s'
+  #lg = !git log --date=format:'%b %d %H:%M' --format=format:'commit %Cgreen%h %Creset%<|(30,trunc)%aL %<|(43,trunc)%cd %Creset%s'
+  #lg = !git log --date=format:'%b%d' --format=format:'commit %Cgreen%h %Creset%<|(25,trunc)%aL %<|(31,trunc)%cd %Creset%s %C(auto)%d%Creset'
+  # maybe too much trunc?
+  #lg = !git log --date=format:'%b%d' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %<(5,trunc)%cd %Creset%<(72,trunc)%s %C(auto)%<(20,ltrunc)%d%Creset'
+  # less trunc
+  lg = !git log --date=format:'%b%d' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %<(5,trunc)%cd %Creset%<(72,trunc)%s %C(auto)%d%Creset'
+  lq = !git log --date=format:'%b%d' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %<(5,trunc)%cd %Creset%<(72,trunc)%s'
+; review incoming / outgoing changes
+	lg-in = !git --no-pager lg ..@{u}
+	lg-out = !git --no-pager lg @{u}..
+; Log of two branches to see divergence.
+  lg-divergence = !git lg --graph V41_integration V41_release
+  graph = !git lg --graph --decorate-refs-exclude=refs/tags --decorate-refs-exclude=refs/remotes
+; Don't need this with single repo
+; chk="!git-check.sh"
+	df = !git --no-pager diff
+	dfc = !git --no-pager diff --cached
+	sl = stash list
+  s = status
+; quick status, consumable by grep et al
+  q = status -s --no-renames
+	cm = commit -m
+	reset-all-untracked = clean -d -f
+  reset-to-origin = reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
+	reset-file = checkout HEAD --
+  reset-to-local = reset --hard HEAD
+;	reset-repo = stash push -u -m
+;revert-hash = revert --no-commit
+;revert-repo = reset --hard HEAD
+; NEEDS updating now that we have tags
+;  build = !git log $(git log --skip=1 -n1 --author=no-reply-gui-build --pretty=format:"%h")..HEAD
+; find start of branch V41_integration, from V33_integration
+; git switch V41_integration
+; git log --oneline V33_integration..
+;
+; Switch branches
+  s-int = switch V41_integration
+  s-rel = switch V41_release
+; Merge branches
+  m-int = merge V41_integration
+  m-rel = merge V41_release
+; List tags with annotation text
+  t = tag -l -n
+[pull]
+  rebase = false
+[gc]
+	autoDetach = false
+[remote "origin"]
+	fetch = +refs/pull/*/merge:refs/remotes/origin/pr/*
+[credential]
+	helper = C:/tools/git/mingw64/bin/git-credential-manager.exe
+[commit]
+	gpgSign = false
+	verbose = true
+[gui]
+	pruneduringfetch = true
+; prefer manual setting of remote branch name to catch typos and case differences
+;[checkout]
+;	guess = false
+[merge]
+  tool = smartsynchronize
+[mergetool "smartsynchronize"]
+   cmd = '/C/Program Files/SmartSynchronize/bin/smartsynchronize.exe' "$LOCAL" "$REMOTE" "$MERGED"
+   trustExitCode = false
+[smartgit "submodule"]
+	fetchalways = false
+	update = true
+	initializenew = true
