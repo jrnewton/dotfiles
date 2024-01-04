@@ -19,9 +19,10 @@
   r = remote -v
 ; see also https://coderwall.com/p/euwpig/a-better-git-log
 ; single line with all decorations (heads, tags, etc)
-  lg = !git log --date=format:'%b%d' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %<(5,trunc)%cd %Creset%<(72,trunc)%s %C(auto)%d%Creset'
+  ; lg = !git log --date=format:'%b%d' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %<(5,trunc)%cd %Creset%<(72,trunc)%s %C(auto)%d%Creset'
+  lg = !git log --date=format:'%b%d-%I:%M%p' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s %C(auto)%d%Creset'
 ; 'q' = quick. single line with no decorations
-  lq = !git log --date=format:'%b%d' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %<(5,trunc)%cd %Creset%<(72,trunc)%s'
+  lq = !git log --date=format:'%b%d-%I:%M%p' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s'
 ; review incoming / outgoing changes
 	lg-in = !git --no-pager lg ..@{u}
 	lg-out = !git --no-pager lg @{u}..
