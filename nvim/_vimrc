@@ -1,4 +1,3 @@
-" Legacy vim settings
 set encoding=UTF-8
 set autochdir " for older vims: autocmd BufEnter * silent! :lcd %:p:h
 set hidden " Hide buffers rather than unloading it
@@ -12,7 +11,9 @@ set shiftwidth=2
 set tabstop=2
 set wildignorecase
 set wildmenu
-set relativenumber
+set number
+"So far I haven't used this as much as I thought...
+"set relativenumber
 set guioptions+=bk " b=enable bottom scroll, k=keep window size
 set synmaxcol=512 " stop syntax highlight, avoid slow down on long lines
 set statusline=%<%F\ %h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -25,6 +26,9 @@ set nowrap
 set nobackup
 set nocursorline
 set nospell
+set colorcolumn=80
+set scrolloff=20
+set guicursor=a:blinkon100
 let mapleader="\\"
 " Make sure nothing is after <CR> or mapping will be messed up.
 " wrap
@@ -54,4 +58,3 @@ nnoremap <silent> <leader>] :bn<CR>
 nnoremap <silent> <leader>[ :bp<CR>
 " file History query
 nnoremap <leader>h :browse filter // ol<left><left><left><left>
-let g:python3_host_prog = '~\AppData\Local\Programs\Python\Python311\python3.exe'
