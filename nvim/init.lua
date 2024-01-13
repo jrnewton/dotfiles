@@ -1,5 +1,34 @@
-vim.cmd([[source C:/Users/JonNewton/AppData/Local/nvim/_vimrc]])
+-- I use a console font of "MesloLGS NF" for clink-flex-prompt and it was
+-- also required for Gitsigns to work.
 
+-------- Original vim config
+vim.cmd([[source C:/Users/JonNewton/AppData/Local/nvim/_vimrc]])
+vim.g.python3_host_prog = "C:/Users/JonNewton/AppData/Local/Programs/Python/Python311/python3.exe"
+
+-------- From primeagen
+-- center page up/down
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("x", "<space>p", [["_dP]])
+
+-- center next/prev search match?
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-------- Random stuff
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
+-------- Lazy vim plugins
+-- auto install lazy
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -14,117 +43,29 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'tpope/vim-fugitive',
-  
-  -- for neovim-qt to work correctly
-  'equalsraf/neovim-gui-shim',
-
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
-    dependencies = { 'nvim-lua/plenary.nvim' }
-  },
-
-  -- needed for telescope
-  {
-    'nvim-treesitter/nvim-treesitter', 
-    compilers = 'clang',
-    build = ':TSUpdate'
-  },
-
-  {
-    'lewis6991/gitsigns.nvim',
+    "folke/trouble.nvim",
     opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add          = { text = '+' },
-        change       = { text = '│' },
-        delete       = { text = '-' },
-        topdelete    = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked    = { text = '┆' },
-      },
-      signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
-      numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
-      linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
-      word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-      watch_gitdir = {
-        follow_files = true
-      },
-      attach_to_untracked = true,
-      current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-      current_line_blame_opts = {
-        virt_text = true,
-        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-        delay = 1000,
-        ignore_whitespace = false,
-      },
-      current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-      sign_priority = 6,
-      update_debounce = 100,
-      status_formatter = nil, -- Use default
-      max_file_length = 40000, -- Disable if file is longer than this (in lines)
-      preview_config = {
-        -- Options passed to nvim_open_win
-        border = 'single',
-        style = 'minimal',
-        relative = 'cursor',
-        row = 0,
-        col = 1
-      },
-      yadm = {
-        enable = false
-      },
-      on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
-
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
-        end
-
-        -- Navigation
-        map('n', ']c', function()
-          if vim.wo.diff then return ']c' end
-          vim.schedule(function() gs.next_hunk() end)
-          return '<Ignore>'
-        end, {expr=true})
-
-        map('n', '[c', function()
-          if vim.wo.diff then return '[c' end
-          vim.schedule(function() gs.prev_hunk() end)
-          return '<Ignore>'
-        end, {expr=true})
-
-        -- Actions
-        map('n', '<leader>hs', gs.stage_hunk)
-        map('n', '<leader>hr', gs.reset_hunk)
-        map('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-        map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-        map('n', '<leader>hS', gs.stage_buffer)
-        map('n', '<leader>hu', gs.undo_stage_hunk)
-        map('n', '<leader>hR', gs.reset_buffer)
-        map('n', '<leader>hp', gs.preview_hunk)
-        map('n', '<leader>hb', function() gs.blame_line{full=true} end)
-        map('n', '<leader>tb', gs.toggle_current_line_blame)
-        map('n', '<leader>hd', gs.diffthis)
-        map('n', '<leader>hD', function() gs.diffthis('~') end)
-        map('n', '<leader>td', gs.toggle_deleted)
-
-        -- Text object
-        map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
-      end
-    },
+      icons = false
+    }
   },
 
   {
-  -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'hrsh7th/cmp-nvim-lsp',
+      {
+        'hrsh7th/nvim-cmp',
+        dependencies =
+        { 'L3MON4D3/LuaSnip' }
+      },
+    }
   },
+
+  --  { "folke/tokyonight.nvim" },
+  --   { "ramojus/mellifluous.nvim", name = "mellifluous", priority = 1000 },
 
   {
     -- Set lualine as statusline
@@ -142,21 +83,68 @@ require('lazy').setup({
 
 }, {})
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+-------- Color scheme
+--require("mellifluous").setup(
+--  {
+--    color_set = 'mellifluous',
+--    mellifluous = {
+--      color_overrides = {
+--        dark = {
+--          -- hl.set('IncSearch', { bg = colors.other_keywords, fg = colors.bg }) -- 'incsearch' highlighting; also used for the text replaced with ':s///c'
+--          -- Also controls highlight yank feature
+--          -- other_keywords = '#772828', -- '#2a2d15',
+--
+--          -- hl.set('Search', { bg = colors.bg4, fg = colors.fg }) -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+--          bg4 = '#772828', --82a2d15',
+--        }
+--      },
+--      neutral = true,
+--      bg_contrast = 'hard'
+--    }
+--  })
+--vim.cmd.colorscheme "mellifluous"
+
+-- require("tokyonight").setup({})
+-- vim.cmd.colorscheme "tokyonight"
+
+vim.cmd.colorscheme "habamax"
+
+-------- Language server config
+local lsp_zero = require("lsp-zero")
+
+-- only enable keymaps when lsp is active for buffer
+lsp_zero.on_attach(function(_, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({
+    buffer = bufnr,
+    -- overwrite existing mappings
+    preserve_mappings = false
+  })
+end)
+
+require('lspconfig').lua_ls.setup({})
+
+require('lspconfig').powershell_es.setup({
+  bundle_path = 'C:/tools/lsp/PowerShellEditorServices',
+  shell = 'powershell.exe'
 })
 
-require("telescope").setup()
+-- deno LSP configuration
+-- To appropriately highlight codefences returned from denols, you will need to augment vim.g.markdown_fenced languages in your init.lua
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
+require('lspconfig').denols.setup({})
 
-vim.keymap.set('n', '<leader>g', '<cmd>:Git<cr>')
-vim.keymap.set('n', '<leader>t', '<cmd>:Telescope<cr>')
+require('lspconfig').rust_analyzer.setup({})
+
+require('lspconfig').gopls.setup({})
+
+require('lspconfig').gopls.setup({})
+
+-------- Trouble config, to show LSP and other messages.
+vim.keymap.set("n", "<leader>t", function() require("trouble").toggle() end)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
