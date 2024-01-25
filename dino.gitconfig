@@ -20,16 +20,17 @@
 ; see also https://coderwall.com/p/euwpig/a-better-git-log
 ; single line with all decorations (heads, tags, etc)
   ; lg = !git log --date=format:'%b%d' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %<(5,trunc)%cd %Creset%<(72,trunc)%s %C(auto)%d%Creset'
-  lg = !git log --date=format:'%b%d-%I:%M%p' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s %C(auto)%d%Creset'
-; 'q' = quick. single line with no decorations
-  lq = !git log --date=format:'%b%d-%I:%M%p' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s'
+  lg = !git log --date=format:'%y%b%d-%I:%M%p' --decorate-refs-exclude=refs/remotes --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s %p %C(auto)%d%Creset'
+; 't' = terse. single line with no decorations
+  lt = !git log --date=format:'%y%b%d-%I:%M%p' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s %p'
 ; review incoming / outgoing changes
 	lg-in = !git --no-pager lg ..@{u}
 	lg-out = !git --no-pager lg @{u}..
 ; Log of two branches to see divergence.
   lg-divergence = !git lg --graph V41_integration V41_release
-; show the graph
-  graph = !git lg --graph --decorate-refs-exclude=refs/tags --decorate-refs-exclude=refs/remotes
+; Graph
+  graph = !git lg --graph --decorate-refs-exclude=refs/remotes
+  graph-no-tags = !git lg --graph --decorate-refs-exclude=refs/tags --decorate-refs-exclude=refs/remotes
 ; diff commands
 	df = !git --no-pager diff
 	dfc = !git --no-pager diff --cached
@@ -39,19 +40,23 @@
   q = status -s --no-renames
 ; commit with message
 	cm = commit -m
+; commit amend
+  ca = commit --amend
 ; reset
 	reset-all-untracked = clean -d -f
   reset-to-origin = reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
 	reset-file = checkout HEAD --
   reset-to-local = reset --hard HEAD
 ; Switch branches
-  s-int = switch V41_integration
-  s-rel = switch V41_release
+  sw = !git-sw.bat $1
+;  s-rel = switch V41_release
 ; Merge branches
-  m-int = merge V41_integration
-  m-rel = merge V41_release
+  mg = !git-mg.bat $1
+;  m-rel = merge V41_release
 ; List tags with annotation text
   t = tag -l -n
+; add modified
+  am = !git-am.bat
 [pull]
 ; NEVER
   rebase = false
@@ -59,8 +64,6 @@
 	autoDetach = false
 [remote "origin"]
 	fetch = +refs/pull/*/merge:refs/remotes/origin/pr/*
-[credential]
-	helper = C:/tools/git/mingw64/bin/git-credential-manager.exe
 [commit]
 	gpgSign = false
 ; verbose provides diff in your $EDITOR when writing commit message.
@@ -79,3 +82,9 @@
 	fetchalways = false
 	update = true
 	initializenew = true
+[safe]
+	directory = C:/Users/JonNewton/AppData/Local/clink
+	directory = C:/tools/clink
+[credential]
+	helper = 
+	helper = C:/tools/git/mingw64/bin/git-credential-manager.exe
