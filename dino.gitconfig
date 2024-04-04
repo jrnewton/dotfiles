@@ -11,52 +11,74 @@
 ; don't do this in case you typo branch name when creating it
   ; autoSetupRemote = true
 [alias]
-; my own help screen.  Filter out the 'h' entry itself with grep -v.
+  cl = clone
+  cl-help = !echo 'git cl: clone'
+; set prefs for newly cloned repo
+  prefs = !git config core.fsmonitor true && git maintenance start
+  prefs-help = !echo 'git prefs: set preferences for repo'
   h = !echo 'aliases: ' && git alias && git-help.bat
+  h-help = !echo 'git h: display this help screen'
   up = !git fetch --all && git pull
+  up-help = !echo 'git up: update aka fetch and pull'
   c = config --global --edit
-  b = branch -av
+  c-help = !echo 'git c: edit Git global configuration file'
   r = remote -v
+  r-help = !echo 'git r: list all remotes'
 ; see also https://coderwall.com/p/euwpig/a-better-git-log
 ; single line with all decorations (heads, tags, etc)
   ; lg = !git log --date=format:'%b%d' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %<(5,trunc)%cd %Creset%<(72,trunc)%s %C(auto)%d%Creset'
-  lg = !git log --date=format:'%y%b%d-%I:%M%p' --decorate-refs-exclude=refs/remotes --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s %p %C(auto)%d%Creset'
-; 't' = terse. single line with no decorations
-  lt = !git log --date=format:'%y%b%d-%I:%M%p' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s %p'
-; review incoming / outgoing changes
-	lg-in = !git --no-pager lg ..@{u}
-	lg-out = !git --no-pager lg @{u}..
-; Log of two branches to see divergence.
-  lg-divergence = !git lg --graph V41_integration V41_release
-; Graph
+  lg = !git log --date=format:'%d%b%y-%I:%M%p' --decorate-refs-exclude=refs/remotes --decorate-refs-exclude=refs/prefetch --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s %p %C(auto)%d%Creset'
+  lg-help = !echo 'git lg: Git log with custom format'
+  tg = !tig
+  tg-help = !echo 'git tg: launch Tig'
+  b = !git for-each-ref --sort=-committerdate refs/heads/ --format='(%(color:green)%(committerdate:relative)%(color:reset)) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(color:red)%(authorname)%(color:reset)'
+  b-help = !echo 'git b: show all local branches, sorted by last commit date'
+  lt = !git log --date=format:'%d%b%y-%I:%M%p' --format=format:'%C(Yellow)commit%Creset %C(auto)%h %Creset%<(10,trunc)%aL %cd  %Creset%<(72,trunc)%s %p'
+  lt-help = !echo 'git lt: Terse lg, without decorations'
+  lg-in = !git lg ..@{u}
+  lg-in-help = !echo 'git lg-in: show incoming changes'
+  lg-out = !git lg @{u}..
+  lg-out-help = !echo 'git lg-out: show outgoing changes'
+  tg-in = !git log ..@{u} | tig
+  tg-in-help = !echo 'git tg-in: show incoming changes in Tig'
+  tg-out = !git log @{u}.. | tig
+  git-out-help = !echo 'git tg-out: show outgoing changes in Tig'
+  lg-diverge = !git lg --graph $1 $2
+  lg-diverge-help = !echo 'git lg-diverge: Show log of two branches to see where they diverged'
   graph = !git lg --graph --decorate-refs-exclude=refs/remotes
+  graph-help = !echo 'git graph: Git lg with graph enabled and remotes excluded'
   graph-no-tags = !git lg --graph --decorate-refs-exclude=refs/tags --decorate-refs-exclude=refs/remotes
-; diff commands
+  graph-no-tags-help = !echo 'git graph-no-tags: Git lg with graph enabled and remotes and tags excluded'
 	df = !git --no-pager diff
+  df-help = !echo 'git df: show diff of working tree'
 	dfc = !git --no-pager diff --cached
+  dfc-help = !echo 'git df: show diff of staged area'
 	sl = stash list
+  sl-help = !echo 'git sl: show stash list'
   s = status
-; quick status, consumable by grep et al
+  s-help = !echo 'git s: Git status'
   q = status -s --no-renames
-; commit with message
+  q-help = !echo 'git q: quick status, consumable by grep etc'
 	cm = commit -m
-; commit amend
+  cm-help = !echo 'git cm: commit with message'
   ca = commit --amend
+  ca-help = !echo 'git ca: ammend the last commit'
 ; reset
 	reset-all-untracked = clean -d -f
   reset-to-origin = reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
 	reset-file = checkout HEAD --
   reset-to-local = reset --hard HEAD
 ; Switch branches
-  sw = !git-sw.bat $1
-;  s-rel = switch V41_release
-; Merge branches
+  sw = !git-sw.bat $1 $2
+  sw-help = !echo 'git sw: Git switch using our branch names, first arg is V.R.M and second arg is optional dev initials'
   mg = !git-mg.bat $1
-;  m-rel = merge V41_release
-; List tags with annotation text
+  mg-help = !echo 'git mg: Git merge using git sw syntax'
   t = tag -l -n
-; add modified
+  t-help = !echo 'git t: list tags with annotation text'
   am = !git-am.bat
+  am-help = !echo 'git am: add all modified files'
+  bl = blame -w -C -C -C
+  bl-help = !echo 'git bl: blame on steriods'
 [pull]
 ; NEVER
   rebase = false
@@ -88,3 +110,29 @@
 [credential]
 	helper = 
 	helper = C:/tools/git/mingw64/bin/git-credential-manager.exe
+[maintenance]
+	repo = C:/work/code/udm/UDM41/gui
+	repo = C:/work/code/udm/UDM41/gui-version-script-changes
+	repo = C:/work/code/udm/sandbox
+[tig]
+  status-view=status:display=long file-name:display=always line-number:display=yes
+  ; commit-title must always be last
+  main-view=id:display=yes date:display=default author:display=abbreviated commit-title:graph=no,refs=yes,overflow=no
+  ; 
+  blame-options=-w -M -C -C
+  ; all of these are ignored by tig
+      ;main-options=--no-decorate
+      ;main-options=--clear-decorations --decorate-refs-exclude=refs/remotes/* --decorate-refs-exclude=refs/heads/*
+      ;main-options=--clear-decorations --decorate-refs-exclude=refs/tags/*
+  ; but this works:
+  reference-format=hide:remote hide:branch
+  ; hide:prefetch is doc'ed but not yet in the binary
+  ;
+  tab-size=2
+  show-changes=no
+  show-untracked=no
+  mailmap=yes
+  wrap-search=no
+  mouse=yes
+  mouse-scroll=1
+  mouse-wheel-cursor=yes
