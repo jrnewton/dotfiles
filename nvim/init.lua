@@ -5,15 +5,6 @@
 vim.cmd([[source C:/Users/JonNewton/AppData/Local/nvim/_vimrc]])
 vim.g.python3_host_prog = "C:/Users/JonNewton/AppData/Local/Programs/Python/Python311/python3.exe"
 
--------- From primeagen
--- center page up/down
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("x", "<space>p", [["_dP]])
-
--- center next/prev search match?
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
 
 -------- Random stuff
 -- [[ Highlight on yank ]]
@@ -64,9 +55,6 @@ require('lazy').setup({
     }
   },
 
-  --  { "folke/tokyonight.nvim" },
-  --   { "ramojus/mellifluous.nvim", name = "mellifluous", priority = 1000 },
-
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -81,31 +69,29 @@ require('lazy').setup({
     },
   },
 
-}, {})
-
--------- Color scheme
---require("mellifluous").setup(
 --  {
---    color_set = 'mellifluous',
---    mellifluous = {
---      color_overrides = {
---        dark = {
---          -- hl.set('IncSearch', { bg = colors.other_keywords, fg = colors.bg }) -- 'incsearch' highlighting; also used for the text replaced with ':s///c'
---          -- Also controls highlight yank feature
---          -- other_keywords = '#772828', -- '#2a2d15',
+--    'mfussenegger/nvim-dap'
+--  },
 --
---          -- hl.set('Search', { bg = colors.bg4, fg = colors.fg }) -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
---          bg4 = '#772828', --82a2d15',
---        }
---      },
---      neutral = true,
---      bg_contrast = 'hard'
+--  {
+--    'mxsdev/nvim-dap-vscode-js'
+--  },
+--
+--  {
+--    'rcarriga/nvim-dap-ui',
+--    dependencies = {
+--      'mfussenegger/nvim-dap',
+--      'nvim-neotest/nvim-nio'
 --    }
---  })
---vim.cmd.colorscheme "mellifluous"
+--  },
+--
+--  {
+--      "ThePrimeagen/harpoon",
+--      branch = "harpoon2",
+--      dependencies = { "nvim-lua/plenary.nvim" }
+--  }
 
--- require("tokyonight").setup({})
--- vim.cmd.colorscheme "tokyonight"
+}, {})
 
 vim.cmd.colorscheme "habamax"
 
@@ -132,10 +118,12 @@ require('lspconfig').powershell_es.setup({
 
 -- deno LSP configuration
 -- To appropriately highlight codefences returned from denols, you will need to augment vim.g.markdown_fenced languages in your init.lua
-vim.g.markdown_fenced_languages = {
-  "ts=typescript"
-}
-require('lspconfig').denols.setup({})
+--vim.g.markdown_fenced_languages = {
+--  "ts=typescript"
+--}
+--require('lspconfig').denols.setup({})
+
+require('lspconfig').tsserver.setup({})
 
 require('lspconfig').rust_analyzer.setup({})
 
@@ -143,8 +131,79 @@ require('lspconfig').gopls.setup({})
 
 require('lspconfig').gopls.setup({})
 
--------- Trouble config, to show LSP and other messages.
-vim.keymap.set("n", "<leader>t", function() require("trouble").toggle() end)
+
+-- require("dap-vscode-js").setup({
+--   debugger_path = "C:/tools/vscode-js-debug",
+--   adapters = { 'chrome', 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost', 'node', 'chrome' },
+-- })
+-- 
+-- local js_based_langauges = { "typescript", "javascript" }
+-- for _, language in ipairs(js_based_langauges) do
+--   require("dap").configurations[language] = {
+--     {
+--       type = "pwa-node",
+--       request = "launch",
+--       name = "Launch file",
+--       program = "${file}",
+--       cwd = "${workspaceFolder}",
+--     }
+--   }
+-- end
+-- 
+-- require("dapui").setup({})
+-- 
+-- local dap, dapui = require("dap"), require("dapui")
+-- 
+-- dap.listeners.after.event_initialized["dapui_config"] = function()
+--   dapui.open({})
+-- end
+-- dap.listeners.before.event_terminated["dapui_config"] = function()
+--   dapui.close({})
+-- end
+-- dap.listeners.before.event_exited["dapui_config"] = function()
+--   dapui.close({})
+-- end
+-- 
+-- -------- Harpoon config
+-- local harpoon = require("harpoon")
+-- harpoon:setup({})
+
+-------- Key mappings
+
+-- From primeagen
+-- center page up/down
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("x", "<space>p", [["_dP]])
+
+-- center next/prev search match?
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Trouble config, to show LSP and other messages.
+-- vim.keymap.set("n", "<leader>t", function() require("trouble").toggle() end)
+
+-- Debugger
+-- vim.keymap.set('n', '<leader>d', require 'dapui'.toggle)
+-- vim.keymap.set('n', '<F5>', require 'dap'.continue)
+-- vim.keymap.set('n', '<F10>', require 'dap'.step_over)
+-- vim.keymap.set('n', '<F11>', require 'dap'.step_into)
+-- vim.keymap.set('n', '<F12>', require 'dap'.step_out)
+-- vim.keymap.set('n', '<leader>b', require 'dap'.toggle_breakpoint)
+-- vim.keymap.set('n', '<leader>B', function()
+--   require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+-- end)
+
+-- Harpoon
+-- doesn't quite work right...
+-- vim.keymap.set("n", "<space>a", function() harpoon:list():add() end)
+-- vim.keymap.set("n", "<space>l", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+-- vim.keymap.set("n", "<space>1", function() harpoon:list():select(1) end)
+-- vim.keymap.set("n", "<space>2", function() harpoon:list():select(2) end)
+-- vim.keymap.set("n", "<space>3", function() harpoon:list():select(3) end)
+-- vim.keymap.set("n", "<space>4", function() harpoon:list():select(4) end)
+-- vim.keymap.set("n", "<space>[", function() harpoon:list():prev() end)
+-- vim.keymap.set("n", "<space>]", function() harpoon:list():next() end)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
