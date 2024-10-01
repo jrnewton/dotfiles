@@ -36,7 +36,7 @@ nnoremap <silent> <Leader>w :set wrap!<CR>
 " trailing Space
 nnoremap <silent> <Leader>s <ESC>/\v $<CR>
 " Diffthis!
-nnoremap <silent> <Leader>d :windo :diffthis<CR>
+" nnoremap <silent> <Leader>d :windo :diffthis<CR>
 " scroll Lock
 nnoremap <silent> <Leader>l :windo :set scb!<CR>
 " Conflicts
@@ -58,3 +58,4 @@ nnoremap <silent> <leader>] :bn<CR>
 nnoremap <silent> <leader>[ :bp<CR>
 " file History query
 nnoremap <leader>h :browse filter // ol<left><left><left><left>
+tnoremap <Esc> <C-\><C-n>
