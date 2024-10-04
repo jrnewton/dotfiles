@@ -1,18 +1,10 @@
 {
     "workbench.startupEditor": "none",
-    "redhat.telemetry.enabled": false,
     "git.openRepositoryInParentFolders": "never",
     "extensions.ignoreRecommendations": true,
     "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "editor.tabSize": 2,
     "editor.bracketPairColorization.enabled": false,
     "explorer.confirmDelete": false,
-    "svelte.enable-ts-plugin": true,
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "github.copilot.enable": {
-        "*": false,
-        "plaintext": false,
-        "markdown": false,
-        "scminput": false
-    }
+    "javascript.updateImportsOnFileMove.enabled": "always"
 }
