@@ -11,4 +11,4 @@ REM   so the 'third' column is really second.
 REM   cut -d' ' -f3-
 REM
 REM So use this original logic instead:
-gawk "{print $2}"
+col.bat 2
