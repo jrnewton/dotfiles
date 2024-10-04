@@ -2,8 +2,8 @@
 -- also required for Gitsigns to work.
 
 -------- Original vim config
-vim.cmd([[source C:/Users/JonNewton/AppData/Local/nvim/_vimrc]])
-vim.g.python3_host_prog = "C:/Users/JonNewton/AppData/Local/Programs/Python/Python311/python3.exe"
+vim.cmd([[source C:/Users/Jon/AppData/Local/nvim/_vimrc]])
+vim.g.python3_host_prog = "C:/Users/Jon/AppData/Local/Programs/Python/Python311/python3.exe"
 
 
 -------- Random stuff
